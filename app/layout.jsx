@@ -11,15 +11,17 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className='dark:bg-nft-dark bg-white min-h-screen'>
+      <body>
         <ThemeProvider attribute='class' defaultTheme='light'>
-          <Navbar />
-          {children}
-          <Footer />
-          <Script
-            src='https://kit.fontawesome.com/e61a49ce78.js'
-            crossorigin='anonymous'
-          />
+          <div className='dark:bg-nft-dark bg-white min-h-screen'>
+            <Navbar />
+            <div className='pt-65'>{children}</div>
+            <Footer />
+            <Script
+              src='https://kit.fontawesome.com/e61a49ce78.js'
+              crossorigin='anonymous'
+            />
+          </div>
         </ThemeProvider>
       </body>
     </html>
