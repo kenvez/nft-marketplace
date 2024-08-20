@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>
+      <body className='dark:bg-nft-dark bg-white min-h-screen'>
         <ThemeProvider attribute='class' defaultTheme='light'>
           <Navbar />
           {children}
