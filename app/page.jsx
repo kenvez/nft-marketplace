@@ -1,13 +1,46 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { Banner, CreatorCard } from '../components';
-import images from '../assets';
 import { makeId } from '../utils/makeId';
+import { useTheme } from 'next-themes';
+import images from '../assets';
 
 const Home = () => {
+  const [hideButtons, setHideButtons] = useState(false);
+  const { theme } = useTheme();
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
+
+  const handleScroll = (direction) => {
+    const { current } = scrollRef;
+    const scrollAmount = window.innerWidth > 1800 ? 270 : 225;
+
+    if (direction === 'left') {
+      current.scrollLeft -= scrollAmount;
+    } else {
+      current.scrollLeft += scrollAmount;
+    }
+  };
+
+  const isScrollable = () => {
+    const { current } = scrollRef;
+    const { current: parent } = parentRef;
+
+    if (current?.scrollWidth >= parent?.offsetWidth) {
+      setHideButtons(false);
+    } else {
+      setHideButtons(true);
+    }
+  };
+
+  useEffect(() => {
+    isScrollable();
+    window.addEventListener('resize', isScrollable);
+
+    return () => window.removeEventListener('resize', isScrollable);
+  });
 
   return (
     <div className='flex justify-center sm:px-6 p-12'>
@@ -35,6 +68,34 @@ const Home = () => {
                   creatorEths={10 - i * 0.5}
                 />
               ))}
+              {!hideButtons && (
+                <>
+                  <div
+                    className='absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer left-0'
+                    onClick={() => handleScroll('left')}
+                  >
+                    <Image
+                      src={images.left}
+                      layout='fill'
+                      objectFit='contain'
+                      alt='left-arrow'
+                      className={theme === 'light' && 'filter invert'}
+                    />
+                  </div>
+                  <div
+                    className='absolute w-8 h-8 minlg:w-12 minlg:h-12 top-45 cursor-pointer right-0'
+                    onClick={() => handleScroll('right')}
+                  >
+                    <Image
+                      src={images.right}
+                      layout='fill'
+                      objectFit='contain'
+                      alt='right-arrow'
+                      className={theme === 'light' && 'filter invert'}
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
