@@ -91,7 +91,12 @@ const CreateNFT = () => {
           placeholder='Description'
           handleClick={(e) => setFormInput({ ...formInput, description: e.target.value })}
         />
-
+        <Input
+          inputType='number'
+          title='Price'
+          placeholder='Price'
+          handleClick={(e) => setFormInput({ ...formInput, price: e.target.value })}
+        />
         <div className='mt-7 w-full flex justify-end'>
           <Button btnName='Create NFTCard' classStyles='rounded-xl' handleClick={() => {}} />
         </div>
