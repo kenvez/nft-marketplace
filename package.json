@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
     "axios": "^1.7.4",
     "hardhat": "^2.22.8",
     "ipfs-http-client": "^60.0.1",
