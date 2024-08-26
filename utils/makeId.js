@@ -1,5 +1,3 @@
-import { arrayify } from 'ethers/lib/utils';
-
 export const makeId = (length) => {
   let result = '';
 

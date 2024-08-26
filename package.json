@@ -22,6 +22,7 @@
     "web3modal": "^1.9.12"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-ignition-ethers": "^0.15.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "eslint-config-prettier": "^9.1.0",
